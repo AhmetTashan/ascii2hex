@@ -1,0 +1,23 @@
+// ------------------------------------
+// Forms
+// ------------------------------------
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid $form__border-color;
+    border-radius: $form__border-radius;
+    transition: $form__transition;
+
+    &:focus {
+        outline: none;
+        border-color: $form__focus-color;
+        box-shadow: inset 0 0 0 0.05rem rgba($form__focus-color, 0.25);
+    }
+
+    &[disabled] {
+        background-color: $form__disabled-background-color;
+        opacity: 1;
+    }
+}
