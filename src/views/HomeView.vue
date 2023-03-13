@@ -13,8 +13,16 @@ export default {
         }
     },
     methods: {
+        async changePayload(payload) {
+            this.payload = await null;
+            this.payload = await payload;
+        },
         addError(error) {
             this.error.push(error);
+        },
+        async clear() {
+            await this.changePayload('');
+            this.error = [];
         }
     }
 }
@@ -23,50 +31,51 @@ export default {
 <template>
     <b-container fluid>
 
-        <h2 class="fs-2 mt-5 mb-3">Free text conversion tools</h2>
+        <h1 class="fs-2 fw-bold mt-4 mb-3">ASCII To Hex</h1>
+        <h2 class="fs-2 fw-light mb-3">Free text conversion tools <b-button @click="clear" variant="outline-primary" class="py-0">Clear</b-button> </h2>
         <b-row no-gutters>
 
             <CardComponent color="green-100"
-                           name="Text (ASCII/ANSI)"
+                           label="Text (ASCII/ANSI)"
                            type="text"
                            @error="addError"
                            :payload="payload"
-                           @update:data="payload = $event"/>
+                           @update:data="changePayload"/>
 
             <CardComponent color="green"
-                           name="Binary"
+                           label="Binary"
                            type="binary"
                            @error="addError"
                            :payload="payload"
-                           @update:data="payload = $event"/>
+                           @update:data="changePayload"/>
 
             <CardComponent color="blue-100"
-                           name="Url encode"
+                           label="Url encode"
                            type="urlEncode"
                            @error="addError"
                            :payload="payload"
-                           @update:data="payload = $event"/>
+                           @update:data="changePayload"/>
 
             <CardComponent color="blue"
-                           name="Hexadecimal"
+                           label="Hexadecimal"
                            type="hexadecimal"
                            @error="addError"
                            :payload="payload"
-                           @update:data="payload = $event"/>
+                           @update:data="changePayload"/>
 
             <CardComponent color="purple"
-                           name="Base64"
+                           label="Base64"
                            type="base64"
                            @error="addError"
                            :payload="payload"
-                           @update:data="payload = $event"/>
+                           @update:data="changePayload"/>
 
             <CardComponent color="purple-100"
-                           name="Decimal"
+                           label="Decimal"
                            type="decimal"
                            @error="addError"
                            :payload="payload"
-                           @update:data="payload = $event"/>
+                           @update:data="changePayload"/>
         </b-row>
 
         <ToastComponent :error="error"

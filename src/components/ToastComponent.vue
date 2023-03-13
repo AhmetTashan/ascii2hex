@@ -20,11 +20,11 @@ export default {
 </script>
 
 <template>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast-container position-fixed top-0 end-0 p-3">
 
         <div class="toast fade show align-items-center text-bg-danger border-0" role="alert" aria-live="assertive"
              aria-atomic="true"
-             v-for="(value, index) in error" :key="index">
+             v-for="(value, index) in error.reverse()" :key="index">
             <div class="d-flex">
                 <div class="toast-body">
                     {{ value }}

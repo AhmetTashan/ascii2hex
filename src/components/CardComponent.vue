@@ -5,7 +5,7 @@ export default {
     name: "CardComponent",
     emits: ["update:data", "error"],
     props: {
-        name: {
+        label: {
             type: String,
             required: true
         },
@@ -46,23 +46,18 @@ export default {
                     data = this.data;
                     break;
                 case "binary":
-                    console.log("binary", this.data)
                     data = Convert.binaryToString(this.data);
                     break;
                 case "urlEncode":
-                    console.log("urlEncode", this.data)
                     data = Convert.urlEncodeToString(this.data);
                     break;
                 case "hexadecimal":
-                    console.log("hexadecimal", this.data)
                     data = Convert.hexadecimalToString(this.data);
                     break;
                 case "base64":
-                    console.log("base64", this.data)
                     data = Convert.base64ToString(this.data);
                     break;
                 case "decimal":
-                    console.log("decimal", this.data)
                     data = Convert.decimalToString(this.data);
                     break;
             }
@@ -105,8 +100,10 @@ export default {
         }
     },
     watch: {
-        payload() {
-            this.data = this.stringToEncrypt();
+        payload(value) {
+            if (value !== null) {
+                this.data = this.stringToEncrypt();
+            }
         }
     }
 
@@ -116,15 +113,25 @@ export default {
 <template>
     <b-col class="col-12 col-sm-6 col-md-4">
         <b-card :class="cardColor" class="rounded-0 h-100">
-            <h3 class="fs-4 mb-3">{{ name }}</h3>
+            <h3 class="fs-4 mb-3">{{ label }}</h3>
             <b-form-textarea rows="7" class="shadow-none border-2"
                              spellcheck="false"
                              v-model="data"/>
 
             <div class="d-flex justify-content-end">
 
-                <b-button variant="outline-secondary" class="my-3 me-3" @click="copy">Copy</b-button>
-                <b-button variant="dark" class="my-3" @click="convert">Convert</b-button>
+                <b-button variant="outline-secondary" class="my-3 me-3"
+                          data-bs-toggle="tooltip" data-bs-placement="top"
+                          data-bs-custom-class="custom-tooltip"
+                          data-bs-title="This top tooltip is themed via CSS variables."
+                          :disabled="data === ''"
+                          @click="copy">
+                    Copy
+                </b-button>
+                <b-button variant="dark" class="my-3"
+                          @click="convert">
+                    Convert
+                </b-button>
             </div>
         </b-card>
     </b-col>

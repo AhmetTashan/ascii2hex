@@ -3,7 +3,7 @@ export const stringToBinary = (str) => {
     try {
         return str.split('').map((char) => {
             return char.charCodeAt(0).toString(2);
-        });
+        }).toString().replace(/,/g, ' ');
     } catch (error) {
         return {error: 'Error converting binary'}
     }
@@ -13,6 +13,7 @@ export const stringToBinary = (str) => {
 // binaryToString: convert binary to string
 export const binaryToString = (binary) => {
     try {
+        binary = binary.split(' ');
         const str = binary.map((char) => {
             return String.fromCharCode(parseInt(char, 2));
         });
@@ -66,7 +67,7 @@ export const stringToHexadecimal = (str) => {
     try {
         return str.split('').map((char) => {
             return char.charCodeAt(0).toString(16);
-        });
+        }).toString().replace(/,/g, ' ');
     } catch (error) {
         return {error: 'Error converting hexadecimal'}
     }
@@ -75,6 +76,7 @@ export const stringToHexadecimal = (str) => {
 // hexadecimalToString: convert hexadecimal to string
 export const hexadecimalToString = (hex) => {
     try {
+        hex = hex.split(' ');
         const str = hex.map((char) => {
             return String.fromCharCode(parseInt(char, 16));
         });
@@ -89,7 +91,7 @@ export const stringToDecimal = (str) => {
     try {
         return str.split('').map((char) => {
             return char.charCodeAt(0);
-        });
+        }).toString().replace(/,/g, ' ');
     } catch (error) {
         return {error: 'Error converting decimal'}
     }
@@ -98,6 +100,7 @@ export const stringToDecimal = (str) => {
 // decimalToString: convert decimal to string
 export const decimalToString = (decimal) => {
     try {
+        decimal = decimal.split(' ');
         const str = decimal.map((char) => {
             return String.fromCharCode(char);
         });
