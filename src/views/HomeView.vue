@@ -9,7 +9,39 @@ export default {
     data() {
         return {
             payload: '',
-            error: []
+            error: [],
+            cardList: [
+                {
+                    color: 'green-100',
+                    label: 'Text (ASCII/ANSI)',
+                    type: 'text'
+                },
+                {
+                    color: 'green',
+                    label: 'Binary',
+                    type: 'binary'
+                },
+                {
+                    color: 'blue-100',
+                    label: 'Url encode',
+                    type: 'urlEncode'
+                },
+                {
+                    color: 'blue',
+                    label: 'Hexadecimal',
+                    type: 'hexadecimal'
+                },
+                {
+                    color: 'purple',
+                    label: 'Base64',
+                    type: 'base64'
+                },
+                {
+                    color: 'purple-100',
+                    label: 'Decimal',
+                    type: 'decimal'
+                }
+            ]
         }
     },
     methods: {
@@ -32,50 +64,18 @@ export default {
     <b-container fluid>
 
         <h1 class="fs-2 fw-bold mt-4 mb-3">ASCII To Hex</h1>
-        <h2 class="fs-2 fw-light mb-3">Free text conversion tools <b-button @click="clear" variant="outline-primary" class="py-0">Clear</b-button> </h2>
+        <h2 class="fs-2 fw-light mb-3">Free text conversion tools
+            <b-button @click="clear" variant="outline-primary" class="py-0">Clear</b-button>
+        </h2>
         <b-row no-gutters>
-
-            <CardComponent color="green-100"
-                           label="Text (ASCII/ANSI)"
-                           type="text"
-                           @error="addError"
-                           :payload="payload"
-                           @update:data="changePayload"/>
-
-            <CardComponent color="green"
-                           label="Binary"
-                           type="binary"
-                           @error="addError"
-                           :payload="payload"
-                           @update:data="changePayload"/>
-
-            <CardComponent color="blue-100"
-                           label="Url encode"
-                           type="urlEncode"
-                           @error="addError"
-                           :payload="payload"
-                           @update:data="changePayload"/>
-
-            <CardComponent color="blue"
-                           label="Hexadecimal"
-                           type="hexadecimal"
-                           @error="addError"
-                           :payload="payload"
-                           @update:data="changePayload"/>
-
-            <CardComponent color="purple"
-                           label="Base64"
-                           type="base64"
-                           @error="addError"
-                           :payload="payload"
-                           @update:data="changePayload"/>
-
-            <CardComponent color="purple-100"
-                           label="Decimal"
-                           type="decimal"
-                           @error="addError"
-                           :payload="payload"
-                           @update:data="changePayload"/>
+            <b-col class="col-12 col-sm-6 col-md-4" v-for="(item, index) in cardList" :key="index">
+                <CardComponent :color="item.color"
+                               :label="item.label"
+                               :type="item.type"
+                               @error="addError"
+                               :payload="payload"
+                               @update:data="changePayload"/>
+            </b-col>
         </b-row>
 
         <ToastComponent :error="error"

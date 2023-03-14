@@ -111,30 +111,29 @@ export default {
 </script>
 
 <template>
-    <b-col class="col-12 col-sm-6 col-md-4">
-        <b-card :class="cardColor" class="rounded-0 h-100">
-            <h3 class="fs-4 mb-3">{{ label }}</h3>
-            <b-form-textarea rows="7" class="shadow-none border-2"
-                             spellcheck="false"
-                             v-model="data"/>
 
-            <div class="d-flex justify-content-end">
+    <b-card :class="cardColor" class="rounded-0 h-100">
+        <h3 class="fs-4 mb-3">{{ label }}</h3>
+        <b-form-textarea rows="7" class="shadow-none border-2"
+                         spellcheck="false"
+                         v-model="data"/>
 
-                <b-button variant="outline-secondary" class="my-3 me-3"
-                          data-bs-toggle="tooltip" data-bs-placement="top"
-                          data-bs-custom-class="custom-tooltip"
-                          data-bs-title="This top tooltip is themed via CSS variables."
-                          :disabled="data === ''"
-                          @click="copy">
-                    Copy
-                </b-button>
-                <b-button variant="dark" class="my-3"
-                          @click="convert">
-                    Convert
-                </b-button>
-            </div>
-        </b-card>
-    </b-col>
+        <div class="d-flex justify-content-end">
+
+            <b-button variant="outline-secondary" class="my-3 me-3"
+                      data-bs-toggle="tooltip" data-bs-placement="top"
+                      data-bs-custom-class="custom-tooltip"
+                      data-bs-title="This top tooltip is themed via CSS variables."
+                      :disabled="data === ''"
+                      @click="copy">
+                Copy
+            </b-button>
+            <b-button variant="dark" class="my-3"
+                      @click="convert">
+                Convert
+            </b-button>
+        </div>
+    </b-card>
 
 </template>
 
